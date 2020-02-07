@@ -9,29 +9,39 @@ import android.widget.TextView;
 import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MainActivity extends AppCompatActivity {
-    Button submitButton;
+    Button nameButton;
     Button colorButton;
     EditText nameText;
+    EditText colorText;
     TextView displayText;
+    ConstraintLayout currentLayout;
+
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        submitButton = findViewById(R.id.clickButton);
-        colorButton = findViewById(R.id.clickButton2);
-        nameText = findViewById(R.id.responseEditText);
-        colorText = findViewById(R.id.response2EditText);
+        currentLayout = findViewById(R.id.Layout);
         displayText = findViewById(R.id.textBox);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        nameText = findViewById(R.id.responseEditText);
+        nameButton = findViewById(R.id.clickButton);
+
+        colorText = findViewById(R.id.response2EditText);
+        colorButton = findViewById(R.id.clickButton2);
+
+
+        nameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Test Button1", nameText.getText().toString());
-                String s = displayText.getText()+" "+ nameText.getText();
+                Log.i("Name", nameText.getText().toString());
+                count += 1;
+                String s = "Hi, " + nameText.getText() + "! Count = " + count;
                 displayText.setText(s);
             }
         });
@@ -39,24 +49,35 @@ public class MainActivity extends AppCompatActivity {
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Test Button2", nameText.getText().toString());
-                String colorVal = colorText.get
-                colorButton.setTextColor(Color.parseColor(Color.blue));
-            }
-        });
+                Log.i("Color", colorText.getText().toString());
+                String colorVal = colorText.getText() + "";
 
-        nameText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    if(nameText.getText().toString().equals("TJ")){
-                        displayText.setText("TJ Rocks!");
-                        nameText.setText("");
-                        nameText.setHint("That's a good name.");
-                    }
+                if (colorVal.equals("BLACK")) {
+                    colorButton.setBackgroundColor(Color.BLACK);
+                    nameButton.setBackgroundColor(Color.BLACK);
                 }
+                if (colorVal.equals("WHITE")){
+                    colorButton.setBackgroundColor(Color.WHITE);
+                    nameButton.setBackgroundColor(Color.WHITE);
+                }
+                if (colorVal.equals("BLUE")){
+                    colorButton.setBackgroundColor(Color.BLUE);
+                    nameButton.setBackgroundColor(Color.BLUE);
+                }
+                if (colorVal.equals("RED")){
+                    colorButton.setBackgroundColor(Color.RED);
+                    nameButton.setBackgroundColor(Color.RED);
+                }
+                if (colorVal.equals("GREEN")){
+                    colorButton.setBackgroundColor(Color.GREEN);
+                    nameButton.setBackgroundColor(Color.GREEN);
+                }
+                if (colorVal.equals("YELLOW")){
+                    colorButton.setBackgroundColor(Color.YELLOW);
+                    nameButton.setBackgroundColor(Color.YELLOW);
+                }
+                
             }
         });
-
     }
 }
